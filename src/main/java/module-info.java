@@ -3,6 +3,8 @@ module com.example.proyecto2_math {
     requires javafx.fxml;
 
 
-    opens com.example.proyecto2_math to javafx.fxml;
-    exports com.example.proyecto2_math;
+    opens com.main to javafx.fxml;
+    exports com.main;
+    exports com.Cliente;
+    exports com.EstructurasDatos;
 }

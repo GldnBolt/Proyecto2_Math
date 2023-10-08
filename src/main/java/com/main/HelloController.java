@@ -1,4 +1,4 @@
-package com.example.proyecto2_math;
+package com.main;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
