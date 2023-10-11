@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto2_math.VentanaCliente">
+    <children>
+        <TextField layoutX="126.0" layoutY="138.0" />
+        <Label layoutX="126.0" layoutY="121.0" prefHeight="17.0" prefWidth="149.0" text="Puerto" />
+        <Label layoutX="177.0" layoutY="49.0" prefHeight="17.0" prefWidth="48.0" text="Cliente" />
+    </children>
+</AnchorPane>
