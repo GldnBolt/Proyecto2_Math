@@ -2,14 +2,24 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.proyecto2_math.VentanaServidorController">
-   <children>
-      <TextField layoutX="126.0" layoutY="133.0" />
-      <TextField layoutX="126.0" layoutY="200.0" />
-      <Label layoutX="126.0" layoutY="116.0" prefHeight="17.0" prefWidth="149.0" text="Dirección IP por defecto" />
-      <Label layoutX="123.0" layoutY="183.0" prefHeight="17.0" prefWidth="149.0" text="Puerto" />
-      <Label layoutX="177.0" layoutY="49.0" prefHeight="17.0" prefWidth="48.0" text="Servidor" />
-   </children>
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.MainServidor.ServidorController">
+    <TextField layoutX="118.0" layoutY="110.0">
+      <font>
+         <Font size="14.0" />
+      </font></TextField>
+    <Label layoutX="118.0" layoutY="93.0" prefHeight="17.0" prefWidth="149.0" text="Puerto">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+    <Label layoutX="158.0" layoutY="47.0" prefHeight="20.0" prefWidth="72.0" text="Servidor">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+   <Button fx:id="botonIniciar" layoutX="166.0" layoutY="150.0" mnemonicParsing="false" text="Iniciar">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Button>
 </AnchorPane>
