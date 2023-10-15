@@ -7,13 +7,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Servidor {
-    private static final int PORT = 12345;
     private static final int POOL_SIZE = 3;
     private static ExecutorService pool;
 
-    public Servidor() {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Servidor en ejecución en el puerto " + PORT);
+    public Servidor(int puerto) {
+        try (ServerSocket serverSocket = new ServerSocket(puerto)) {
+            System.out.println("Servidor en ejecución en el puerto " + puerto);
             // Crea un pool de hilos con un tamaño fijo
             pool = Executors.newFixedThreadPool(POOL_SIZE);
             while (true) {
@@ -21,6 +20,7 @@ public class Servidor {
                 System.out.println("Cliente conectado: " + clientSocket);
                 // Asigna un hilo del pool al cliente
                 pool.execute(new ManejoClientes(clientSocket));
+                System.out.println("Pool exitoso");
             }
         } catch (IOException e) {
             e.printStackTrace();

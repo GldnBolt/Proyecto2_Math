@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.MainServidor.ServidorController">
-    <TextField layoutX="118.0" layoutY="110.0">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.ServidorController">
+    <TextField fx:id="puertoField" layoutX="118.0" layoutY="110.0">
       <font>
          <Font size="14.0" />
       </font></TextField>
@@ -17,7 +17,7 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-   <Button fx:id="botonIniciar" layoutX="166.0" layoutY="150.0" mnemonicParsing="false" text="Iniciar">
+   <Button fx:id="botonIniciar" layoutX="166.0" layoutY="150.0" mnemonicParsing="false" onAction="#iniciarServidor" text="Iniciar">
       <font>
          <Font size="14.0" />
       </font>

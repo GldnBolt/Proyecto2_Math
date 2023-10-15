@@ -13,6 +13,7 @@ public class ManejoClientes implements Runnable {
         try {
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            System.out.println("Manejo de clientes exitoso");
         } catch (IOException e) {
             e.printStackTrace();
         }

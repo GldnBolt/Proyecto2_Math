@@ -3,15 +3,13 @@ import java.io.*;
 import java.net.Socket;
 
 public class Cliente {
-    private static final String SERVER_IP = "localhost";
-    private static final int SERVER_PORT = 12345;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
 
-    public Cliente() {
+    public Cliente(String ip, int puerto) {
         try {
-            socket = new Socket(SERVER_IP, SERVER_PORT);
+            socket = new Socket(ip, puerto);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException e) {
@@ -25,8 +23,7 @@ public class Cliente {
 
     public String recibirResultado() {
         try {
-            String result = in.readLine();
-            return result;
+            return in.readLine();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
