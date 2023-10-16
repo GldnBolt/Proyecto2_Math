@@ -20,15 +20,6 @@ public class MainServidor extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    public static void abrirMainVentana() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainServidor.class.getResource("MainVentana.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
-
-        stage.setTitle("Main Ventana");
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public static void main(String[] args) {
         launch();

@@ -9,7 +9,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainCliente extends Application {
+    public static Cliente cliente;
     ClienteController clienteController = new ClienteController();
+    static MainController mainController = new MainController();
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -17,9 +19,20 @@ public class MainCliente extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         clienteController= fxmlLoader.getController();
 
-        primaryStage.setTitle("Servidor");
+        primaryStage.setTitle("Cliente");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public static void abrirMainVentana() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainServidor.class.getResource("MainVentana.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        mainController = fxmlLoader.getController();
+
+        stage.setTitle("Main Ventana");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {

@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class ClienteController {
     @FXML
     public Button botonConectar;
@@ -12,9 +14,10 @@ public class ClienteController {
     @FXML
     public TextField ipField;
 
-    public void conectarCliente(){
+    public void conectarCliente() throws IOException {
         if (!puertoField.getText().isEmpty() & !puertoField.getText().isEmpty()){
-            Cliente cliente = new Cliente(ipField.getText(), Integer.parseInt(puertoField.getText()));
+            MainCliente.cliente = new Cliente(ipField.getText(), Integer.parseInt(puertoField.getText()));
+            MainCliente.abrirMainVentana();
         }
     }
 }

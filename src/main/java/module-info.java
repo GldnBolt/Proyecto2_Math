@@ -7,4 +7,5 @@ module com.example.proyecto2_math {
     exports com.main;
     exports com.Cliente;
     exports com.EstructurasDatos;
+    opens com.Cliente to javafx.fxml;
 }
