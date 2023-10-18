@@ -1,6 +1,7 @@
 module com.example.proyecto2_math {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.opencsv;
 
 
     opens com.main to javafx.fxml;

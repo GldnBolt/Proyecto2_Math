@@ -38,8 +38,7 @@ public class ManejoClientes implements Runnable {
         }
     }
 
-    public void sendMessage(String message) {
-        // Envía un mensaje al cliente
+    public void enviarMensajes(String message) {
         out.println(message);
     }
 }

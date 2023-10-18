@@ -13,12 +13,10 @@ public class Servidor {
     public Servidor(int puerto) {
         try (ServerSocket serverSocket = new ServerSocket(puerto)) {
             System.out.println("Servidor en ejecución en el puerto " + puerto);
-            // Crea un pool de hilos con un tamaño fijo
             pool = Executors.newFixedThreadPool(POOL_SIZE);
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Cliente conectado: " + clientSocket);
-                // Asigna un hilo del pool al cliente
                 pool.execute(new ManejoClientes(clientSocket));
                 System.out.println("Pool exitoso");
             }
@@ -30,7 +28,7 @@ public class Servidor {
     static void enviarTodos(String message) {
         for (Runnable r : pool.shutdownNow()) {
             ManejoClientes client = (ManejoClientes) r;
-            client.sendMessage(message);
+            client.enviarMensajes(message);
         }
     }
 }
