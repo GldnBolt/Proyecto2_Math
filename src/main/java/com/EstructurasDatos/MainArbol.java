@@ -1,69 +1,53 @@
 package com.EstructurasDatos;
 import java.util.Scanner;
+import java.util.Stack;
 
 class Nodo {
     String valor;
-    Nodo izquierdo, derecho;
+    Nodo izquierdo;
+    Nodo derecho;
 
-    Nodo(String item) {
-        valor = item;
-        izquierdo = derecho = null;
+    public Nodo(String valor) {
+        this.valor = valor;
+        this.izquierdo = null;
+        this.derecho = null;
     }
 }
 
-class ArbolBinario {
-    Nodo raiz;
-
-    ArbolBinario() {
-        raiz = null;
-    }
-
-    void insertar(String valor) {
-        raiz = insertarRec(raiz, valor);
-    }
-
-    private Nodo insertarRec(Nodo raiz, String valor) {
-        if (raiz == null) {
-            raiz = new Nodo(valor);
-            return raiz;
-        }
-
-        if (esOperador(raiz.valor)) {
-            if (raiz.izquierdo == null) {
-                raiz.izquierdo = insertarRec(raiz.izquierdo, valor);
-            } else {
-                raiz.derecho = insertarRec(raiz.derecho, valor);
-            }
-        } else {
-            if (raiz.derecho == null) {
-                raiz.derecho = insertarRec(raiz.derecho, valor);
-            } else {
-                raiz.izquierdo = insertarRec(raiz.izquierdo, valor);
-            }
-        }
-
-        return raiz;
-    }
-
-    private boolean esOperador(String valor) {
+public class MainArbol {
+    public static boolean esOperador(String valor) {
         return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/");
     }
 
-    double evaluar() {
-        return evaluarRec(raiz);
+    public static Nodo construirArbol(String[] expresion) {
+        Stack<Nodo> pila = new Stack<>();
+
+        for (String token : expresion) {
+            if (!esOperador(token)) {
+                Nodo nodo = new Nodo(token);
+                pila.push(nodo);
+            } else {
+                Nodo nodo = new Nodo(token);
+                nodo.derecho = pila.pop();
+                nodo.izquierdo = pila.pop();
+                pila.push(nodo);
+            }
+        }
+
+        return pila.pop();
     }
 
-    private double evaluarRec(Nodo raiz) {
+    public static int evaluarArbol(Nodo raiz) {
         if (raiz == null) {
             return 0;
         }
 
         if (raiz.izquierdo == null && raiz.derecho == null) {
-            return Double.parseDouble(raiz.valor);
+            return Integer.parseInt(raiz.valor);
         }
 
-        double izquierdo = evaluarRec(raiz.izquierdo);
-        double derecho = evaluarRec(raiz.derecho);
+        int izquierdo = evaluarArbol(raiz.izquierdo);
+        int derecho = evaluarArbol(raiz.derecho);
 
         switch (raiz.valor) {
             case "+":
@@ -78,25 +62,21 @@ class ArbolBinario {
                 return 0;
         }
     }
-}
 
-public class MainArbol {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese la expresión matemática: ");
+        System.out.println("Ingrese la expresión en notación postfija:");
         String expresion = sc.nextLine();
+        String[] tokens = expresion.split(" ");
 
-        String[] valores = expresion.split(" ");
-        ArbolBinario arbol = new ArbolBinario();
+        Nodo raiz = construirArbol(tokens);
+        int resultado = evaluarArbol(raiz);
 
-        for (String valor : valores) {
-            arbol.insertar(valor);
-        }
-
-        double resultado = arbol.evaluar();
         System.out.println("El resultado es: " + resultado);
     }
 }
+
+
 
 
 
