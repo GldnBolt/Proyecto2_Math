@@ -30,7 +30,7 @@ public class MainCliente extends Application {
         Stage stage = new Stage();
         mainController = fxmlLoader.getController();
 
-        stage.setTitle("Main Ventana");
+        stage.setTitle("MainArbol Ventana");
         stage.setScene(scene);
         stage.show();
     }
