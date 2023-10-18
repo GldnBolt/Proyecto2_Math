@@ -1,4 +1,4 @@
-package com.main;
+package com.Servidor;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,8 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-import java.io.IOException;
-
+/**
+ * Clase encargada de controlar la interfaz para actualizar el servidor con la información
+ */
 public class ServidorController {
     @FXML
     public Button botonIniciar;
@@ -16,6 +17,9 @@ public class ServidorController {
     @FXML
     private TextField puertoField;
 
+    /**
+     * Función que valida y utiliza la información de los text fields para actualizar el servidor
+     */
     public void iniciarServidor() {
         if (!puertoField.getText().isEmpty()) {
             try {

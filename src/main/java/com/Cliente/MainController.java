@@ -6,6 +6,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+/**
+ * Clase que controla la interfaz principal de la aplicación
+ */
 public class MainController {
     @FXML
     public ImageView imagenView;
@@ -18,6 +21,9 @@ public class MainController {
     @FXML
     public Button botonFoto;
 
+    /**
+     * Función que envía la expresión al servidor por medio del cliente
+     */
     public void enviarExpresion(){
         if (!expresionField.getText().isEmpty()){
             MainCliente.cliente.enviarExpresion(expresionField.getText());

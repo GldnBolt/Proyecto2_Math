@@ -4,8 +4,8 @@ module com.example.proyecto2_math {
     requires com.opencsv;
 
 
-    opens com.main to javafx.fxml;
-    exports com.main;
+    opens com.Servidor to javafx.fxml;
+    exports com.Servidor;
     exports com.Cliente;
     exports com.EstructurasDatos;
     opens com.Cliente to javafx.fxml;
