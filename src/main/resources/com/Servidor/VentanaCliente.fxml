@@ -4,30 +4,50 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Cliente.ClienteController">
-   <TextField fx:id="ipField" layoutX="115.0" layoutY="106.0" text="localhost">
+<AnchorPane prefHeight="331.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Cliente.ClienteController">
+   <TextField fx:id="ipField" layoutX="49.0" layoutY="74.0" text="localhost">
       <font>
          <Font size="14.0" />
       </font></TextField>
-   <TextField fx:id="puertoField" layoutX="115.0" layoutY="170.0">
+   <TextField fx:id="puertoField" layoutX="49.0" layoutY="140.0">
       <font>
          <Font size="14.0" />
       </font></TextField>
-   <Label layoutX="123.0" layoutY="86.0" prefHeight="17.0" prefWidth="149.0" text="Dirección IP por defecto">
+   <Label layoutX="49.0" layoutY="54.0" prefHeight="17.0" prefWidth="149.0" text="Dirección IP por defecto">
       <font>
          <Font size="14.0" />
       </font></Label>
-   <Label layoutX="127.0" layoutY="150.0" prefHeight="17.0" prefWidth="149.0" text="Puerto">
+   <Label layoutX="49.0" layoutY="120.0" prefHeight="17.0" prefWidth="149.0" text="Puerto">
       <font>
          <Font size="14.0" />
       </font></Label>
-   <Label layoutX="177.0" layoutY="39.0" prefHeight="17.0" prefWidth="48.0" text="Cliente">
+   <Label layoutX="174.0" layoutY="14.0" prefHeight="17.0" prefWidth="48.0" text="Cliente">
       <font>
          <Font size="14.0" />
       </font></Label>
-   <Button fx:id="botonConectar" layoutX="163.0" layoutY="221.0" mnemonicParsing="false" onAction="#conectarCliente" text="Conectar">
+   <Button fx:id="botonConectar" layoutX="163.0" layoutY="269.0" mnemonicParsing="false" onAction="#conectarCliente" text="Conectar">
       <font>
          <Font size="14.0" />
       </font>
    </Button>
+   <Label fx:id="ipLabel" layoutX="235.0" layoutY="69.0" prefHeight="40.0" prefWidth="136.0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <Label fx:id="puertoLabel" layoutX="235.0" layoutY="135.0" prefHeight="40.0" prefWidth="136.0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <Label layoutX="49.0" layoutY="190.0" text="Nombre del usuario">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <TextField fx:id="usuarioField" layoutX="49.0" layoutY="210.0" prefHeight="25.0" prefWidth="173.0">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </TextField>
 </AnchorPane>

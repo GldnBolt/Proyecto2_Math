@@ -30,4 +30,8 @@ public class MainController {
             expresionField.clear();
         }
     }
+
+    public void escribirResultado(String resultado){
+        resultadoArea.setText(resultado);
+    }
 }

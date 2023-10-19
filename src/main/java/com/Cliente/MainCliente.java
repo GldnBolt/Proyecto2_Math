@@ -27,6 +27,7 @@ public class MainCliente extends Application {
 
         primaryStage.setTitle("Cliente");
         primaryStage.setScene(scene);
+        primaryStage.resizableProperty().setValue(false);
         primaryStage.show();
     }
 
@@ -38,6 +39,7 @@ public class MainCliente extends Application {
 
         stage.setTitle("MainArbol Ventana");
         stage.setScene(scene);
+        stage.resizableProperty().setValue(false);
         stage.show();
     }
 
@@ -69,17 +71,14 @@ class Cliente {
         out.println(expression);
     }
 
-    // Añadir este método para recibir y mostrar los mensajes del servidor
     public void recibirMensajes() {
-        //new Thread(() -> {
-            try {
-                String message = in.readLine();
-                while ((message) != null) {
-                    System.out.println("Servidor dice: " + message);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            if ((in.readLine()) != null) {
+                System.out.println("Servidor dice: " + in.readLine());
+                MainCliente.mainController.escribirResultado(in.readLine());
             }
-       // });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
