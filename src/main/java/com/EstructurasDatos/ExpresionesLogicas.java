@@ -10,15 +10,12 @@ public class ExpresionesLogicas {
         String expresionAlgebraica = convertirExpresionesLogicas(expresion);
         System.out.println("Expresión algebraica: " + expresionAlgebraica);
     }
-
     public static String convertirExpresionesLogicas(String expresion) {
         // Reemplazar las expresiones lógicas por sus variantes algebraicas
-        String resultado = expresion.replaceAll("&&", "*")
+        return expresion.replaceAll("&&", "*")
                 .replaceAll("\\|\\|", "+")
                 .replaceAll("!", "~")
                 .replaceAll("\\^", "xor");
-
-        return resultado;
     }
 }
 
