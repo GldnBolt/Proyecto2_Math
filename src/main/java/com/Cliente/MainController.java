@@ -32,6 +32,6 @@ public class MainController {
     }
 
     public void escribirResultado(String resultado){
-        resultadoArea.setText(resultado);
+        resultadoArea.appendText(resultado + "\n");
     }
 }

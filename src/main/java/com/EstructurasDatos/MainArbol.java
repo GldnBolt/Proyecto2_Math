@@ -2,18 +2,6 @@ package com.EstructurasDatos;
 import java.util.Scanner;
 import java.util.Stack;
 
-class Nodo {
-    String valor;
-    Nodo izquierdo;
-    Nodo derecho;
-
-    public Nodo(String valor) {
-        this.valor = valor;
-        this.izquierdo = null;
-        this.derecho = null;
-    }
-}
-
 public class MainArbol {
     public static boolean esOperador(String valor) {
         return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/");
@@ -43,6 +31,7 @@ public class MainArbol {
         }
 
         if (raiz.izquierdo == null && raiz.derecho == null) {
+            System.out.println(raiz.valor);
             return Integer.parseInt(raiz.valor);
         }
 

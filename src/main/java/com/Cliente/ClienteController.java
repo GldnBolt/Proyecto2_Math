@@ -33,9 +33,7 @@ public class ClienteController {
         if (!puertoField.getText().isEmpty() & !puertoField.getText().isEmpty() & !usuarioField.getText().isEmpty()){
             try {
                 MainCliente.cliente = new Cliente(ipField.getText(), Integer.parseInt(puertoField.getText()), usuarioField.getText());
-                new Thread(() -> {
-                    MainCliente.cliente.recibirMensajes();
-                }).start();
+                new Thread(() -> MainCliente.cliente.recibirMensajes()).start();
                 MainCliente.abrirMainVentana();
                 ipLabel.setText("");
                 puertoLabel.setText("");
