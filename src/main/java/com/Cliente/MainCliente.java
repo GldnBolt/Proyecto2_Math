@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Clase que inicia la interfaz y crea el cliente, también abre la ventana principal de la aplicación
@@ -52,33 +53,40 @@ public class MainCliente extends Application {
  * Clase que inicia el cliente, cuenta con las funciones para enviar y recibir información del servidor
  */
 class Cliente {
+    private String nombreCliente;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
 
-    public Cliente(String ip, int puerto, String nombre) { // Añadir un parámetro para el nombre del cliente
+    public Cliente(String ip, int puerto, String nombre) {
         try {
+            nombreCliente = nombre;
             socket = new Socket(ip, puerto);
             out = new PrintWriter(socket.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            out.println(nombre); // Enviar el nombre del cliente al servidor
+            out.println(nombre);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void enviarExpresion(String expression) {
-        out.println(expression);
+        out.println(this.nombreCliente + ">>" + expression);
     }
 
     public void recibirMensajes() {
-        try {
-            if ((in.readLine()) != null) {
-                System.out.println("Servidor dice: " + in.readLine());
-                MainCliente.mainController.escribirResultado(in.readLine());
+        while (true) {
+            try {
+                String mensaje = in.readLine();
+
+                if (mensaje != null) {
+                    System.out.println("Servidor dice: " + mensaje);
+                    MainCliente.mainController.escribirResultado(mensaje);
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
+
 }

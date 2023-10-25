@@ -1,6 +1,7 @@
 package com.Servidor;
 
 import com.EstructurasDatos.MainArbol;
+import com.EstructurasDatos.Nodo;
 import com.opencsv.CSVWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,10 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,13 +85,62 @@ class Servidor {
         }
     }
 
-    public static void escribirCSV(String mensaje, String persona) throws IOException {
+    public static void escribirCSV(String mensaje, String persona, String fecha, String resultado) throws IOException {
         CSVWriter csvWriter = new CSVWriter(new FileWriter("Historial.csv", true));
 
-        String[] datosNuevos = {persona, mensaje};
+        String[] datosNuevos = {persona, mensaje, resultado, fecha};
         csvWriter.writeNext(datosNuevos);
         csvWriter.close();
     }
+
+    public class convertidorPostfijo {
+        public static String convertir(String expression) {
+            StringBuilder output = new StringBuilder();
+            Stack<Character> operators = new Stack<>();
+
+            for (char c : expression.toCharArray()) {
+                if (Character.isDigit(c)) {
+                    output.append(c);
+                } else if (c == '(') {
+                    operators.push(c);
+                } else if (c == ')') {
+                    while (!operators.isEmpty() && operators.peek() != '(') {
+                        output.append(operators.pop());
+                    }
+                    operators.pop();
+                } else if (isOperator(c)) {
+                    while (!operators.isEmpty() && precedence(c) <= precedence(operators.peek())) {
+                        output.append(operators.pop());
+                    }
+                    operators.push(c);
+                }
+            }
+
+            while (!operators.isEmpty()) {
+                output.append(operators.pop());
+            }
+
+            return output.toString();
+        }
+
+        private static boolean isOperator(char c) {
+            return c == '+' || c == '-' || c == '*' || c == '/';
+        }
+
+        private static int precedence(char operator) {
+            switch (operator) {
+                case '+':
+                case '-':
+                    return 1;
+                case '*':
+                case '/':
+                    return 2;
+                default:
+                    return 0;
+            }
+        }
+    }
+
 }
 
 /**
@@ -140,17 +194,27 @@ class ManejoClientes extends Thread {
     }
 
     public void procesarMensaje(String message) throws IOException {
+        LocalDateTime ahora = LocalDate.now().atStartOfDay();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        ahora.format(formato);
+
         if (message.contains(">>")) {
             // Se extrae el nombre del destinatario antes del >> y el contenido del mensaje después del >>
             String[] partes = message.split(">>", 2);
             String destinatario = partes[0].trim();
             String contenido = partes[1].trim();
-            Servidor.escribirCSV(message, destinatario);
+            String expresionPostfija = Servidor.convertidorPostfijo.convertir(contenido);
+            String[] tokens = expresionPostfija.split(" ");
+            Nodo raiz = MainArbol.construirArbol(tokens);
+            int resultado = MainArbol.evaluarArbol(raiz);
 
-            Servidor.enviarUno(destinatario, nombreCliente + " dice: " + contenido);
+            Servidor.escribirCSV(contenido, destinatario, String.valueOf(ahora), String.valueOf(resultado));
+            Servidor.enviarUno(destinatario, nombreCliente + " dice: " + resultado);
         } else {
             Servidor.enviarTodos(nombreCliente + " dice: " + message);
-            Servidor.escribirCSV(message, "Desconocido");
+            Servidor.escribirCSV(message, "Desconocido", String.valueOf(ahora), "resultado");
         }
     }
 }
+
+
