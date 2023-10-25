@@ -1,7 +1,6 @@
 package com.EstructurasDatos;
 import java.util.Scanner;
 import java.util.Stack;
-
 class Nodo {
     String valor;
     Nodo izquierdo;
@@ -16,7 +15,7 @@ class Nodo {
 
 public class MainArbol {
     public static boolean esOperador(String valor) {
-        return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/");
+        return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/") || valor.equals("%") || valor.equals("**");
     }
 
     public static Nodo construirArbol(String[] expresion) {
@@ -28,8 +27,12 @@ public class MainArbol {
                 pila.push(nodo);
             } else {
                 Nodo nodo = new Nodo(token);
-                nodo.derecho = pila.pop();
-                nodo.izquierdo = pila.pop();
+                if (!pila.isEmpty()) {
+                    nodo.derecho = pila.pop();
+                }
+                if (!pila.isEmpty()) {
+                    nodo.izquierdo = pila.pop();
+                }
                 pila.push(nodo);
             }
         }
@@ -49,18 +52,15 @@ public class MainArbol {
         int izquierdo = evaluarArbol(raiz.izquierdo);
         int derecho = evaluarArbol(raiz.derecho);
 
-        switch (raiz.valor) {
-            case "+":
-                return izquierdo + derecho;
-            case "-":
-                return izquierdo - derecho;
-            case "*":
-                return izquierdo * derecho;
-            case "/":
-                return izquierdo / derecho;
-            default:
-                return 0;
-        }
+        return switch (raiz.valor) {
+            case "+" -> izquierdo + derecho;
+            case "-" -> izquierdo - derecho;
+            case "*" -> izquierdo * derecho;
+            case "/" -> izquierdo / derecho;
+            case "%" -> izquierdo % derecho;
+            case "**" -> (int) Math.pow(izquierdo, derecho);
+            default -> 0;
+        };
     }
 
     public static void main(String[] args) {
@@ -75,8 +75,6 @@ public class MainArbol {
         System.out.println("El resultado es: " + resultado);
     }
 }
-
-
 
 
 
