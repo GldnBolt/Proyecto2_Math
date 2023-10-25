@@ -44,6 +44,10 @@ public class MainCliente extends Application {
         stage.show();
     }
 
+    public static void abrirVentanaHistorial() throws IOException {
+
+    }
+
     public static void main(String[] args) {
         launch();
     }
@@ -80,7 +84,7 @@ class Cliente {
                 String mensaje = in.readLine();
 
                 if (mensaje != null) {
-                    System.out.println("Servidor dice: " + mensaje);
+                    System.out.println("Resultado de expresion: " + mensaje);
                     MainCliente.mainController.escribirResultado(mensaje);
                 }
             } catch (IOException e) {

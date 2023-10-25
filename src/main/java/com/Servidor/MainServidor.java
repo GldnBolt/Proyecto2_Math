@@ -69,12 +69,6 @@ class Servidor {
         }).start();
     }
 
-     public static void enviarTodos(String message) {
-        for (ManejoClientes manejoClientes : clientesMapa.values()) {
-            manejoClientes.enviarMensajes(message);
-        }
-    }
-
     public static void enviarUno(String nombre, String message){
         ManejoClientes manejoClientes = clientesMapa.get(nombre);
         if (manejoClientes != null) {
@@ -93,51 +87,69 @@ class Servidor {
         csvWriter.close();
     }
 
-    public class convertidorPostfijo {
-        public static String convertir(String expression) {
-            StringBuilder output = new StringBuilder();
-            Stack<Character> operators = new Stack<>();
+    public static String convertirPostfijo(String expression) {
+        StringBuilder salida = new StringBuilder();
+        Stack<String> operadores = new Stack<>();
+        StringBuilder numero = new StringBuilder();
 
-            for (char c : expression.toCharArray()) {
-                if (Character.isDigit(c)) {
-                    output.append(c);
-                } else if (c == '(') {
-                    operators.push(c);
+        for (int i = 0; i < expression.length(); i++) {
+            char c = expression.charAt(i);
+            if (Character.isDigit(c)) {
+                numero.append(c);
+            } else {
+                if (numero.length() > 0) {
+                    salida.append(numero).append(' ');
+                    numero.setLength(0);
+                }
+                if (c == '(') {
+                    operadores.push(String.valueOf(c));
                 } else if (c == ')') {
-                    while (!operators.isEmpty() && operators.peek() != '(') {
-                        output.append(operators.pop());
+                    while (!operadores.isEmpty() && !operadores.peek().equals("(")) {
+                        salida.append(operadores.pop()).append(' ');
                     }
-                    operators.pop();
-                } else if (isOperator(c)) {
-                    while (!operators.isEmpty() && precedence(c) <= precedence(operators.peek())) {
-                        output.append(operators.pop());
+                    operadores.pop();
+                } else if (esOperador(String.valueOf(c))) {
+                    String operador = String.valueOf(c);
+                    if (c == '*' && i + 1 < expression.length() && expression.charAt(i + 1) == '*') {
+                        operador = "**";
+                        i++;
                     }
-                    operators.push(c);
+                    while (!operadores.isEmpty() && ordenOperadores(operador) <= ordenOperadores(operadores.peek())) {
+                        salida.append(operadores.pop()).append(' ');
+                    }
+                    operadores.push(operador);
                 }
             }
-
-            while (!operators.isEmpty()) {
-                output.append(operators.pop());
-            }
-
-            return output.toString();
         }
 
-        private static boolean isOperator(char c) {
-            return c == '+' || c == '-' || c == '*' || c == '/';
+        if (numero.length() > 0) {
+            salida.append(numero).append(' ');
         }
 
-        private static int precedence(char operator) {
-            switch (operator) {
-                case '+':
-                case '-':
-                    return 1;
-                case '*':
-                case '/':
-                    return 2;
-                default:
-                    return 0;
-            }
+        while (!operadores.isEmpty()) {
+            salida.append(operadores.pop()).append(' ');
+        }
+
+        return salida.toString();
+    }
+
+    private static boolean esOperador(String s) {
+        return !s.isEmpty() && (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/") || s.equals("%") || s.equals("**"));
+    }
+
+    private static int ordenOperadores(String operador) {
+        switch (operador) {
+            case "+":
+            case "-":
+                return 1;
+            case "*":
+            case "/":
+            case "%":
+                return 2;
+            case "**":
+                return 3;
+            default:
+                return 0;
         }
     }
 
@@ -203,16 +215,13 @@ class ManejoClientes extends Thread {
             String[] partes = message.split(">>", 2);
             String destinatario = partes[0].trim();
             String contenido = partes[1].trim();
-            String expresionPostfija = Servidor.convertidorPostfijo.convertir(contenido);
+            String expresionPostfija = Servidor.convertirPostfijo(contenido);
             String[] tokens = expresionPostfija.split(" ");
             Nodo raiz = MainArbol.construirArbol(tokens);
             int resultado = MainArbol.evaluarArbol(raiz);
 
             Servidor.escribirCSV(contenido, destinatario, String.valueOf(ahora), String.valueOf(resultado));
-            Servidor.enviarUno(destinatario, nombreCliente + " dice: " + resultado);
-        } else {
-            Servidor.enviarTodos(nombreCliente + " dice: " + message);
-            Servidor.escribirCSV(message, "Desconocido", String.valueOf(ahora), "resultado");
+            Servidor.enviarUno(destinatario, contenido + " = " + resultado);
         }
     }
 }
