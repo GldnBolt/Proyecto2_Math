@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class MainArbol {
     public static boolean esOperador(String valor) {
-        return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/");
+        return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/") || valor.equals("%") || valor.equals("**");
     }
 
     public static Nodo construirArbol(String[] expresion) {
@@ -38,18 +38,15 @@ public class MainArbol {
         int izquierdo = evaluarArbol(raiz.izquierdo);
         int derecho = evaluarArbol(raiz.derecho);
 
-        switch (raiz.valor) {
-            case "+":
-                return izquierdo + derecho;
-            case "-":
-                return izquierdo - derecho;
-            case "*":
-                return izquierdo * derecho;
-            case "/":
-                return izquierdo / derecho;
-            default:
-                return 0;
-        }
+        return switch (raiz.valor) {
+            case "+" -> izquierdo + derecho;
+            case "-" -> izquierdo - derecho;
+            case "*" -> izquierdo * derecho;
+            case "/" -> izquierdo / derecho;
+            case "%" -> izquierdo % derecho;
+            case "**" -> (int) Math.pow(izquierdo, derecho);
+            default -> 0;
+        };
     }
 
     public static void main(String[] args) {
