@@ -7,7 +7,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -209,9 +208,10 @@ class ManejoClientes extends Thread {
         LocalDateTime ahora = LocalDate.now().atStartOfDay();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         ahora.format(formato);
+        System.out.println(ahora.toString());
 
+        // Se extrae el nombre del destinatario antes del >> y el contenido del mensaje después del >>
         if (message.contains(">>")) {
-            // Se extrae el nombre del destinatario antes del >> y el contenido del mensaje después del >>
             String[] partes = message.split(">>", 2);
             String destinatario = partes[0].trim();
             String contenido = partes[1].trim();

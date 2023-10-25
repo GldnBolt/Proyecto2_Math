@@ -6,6 +6,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
+
 /**
  * Clase que controla la interfaz principal de la aplicación
  */
@@ -20,6 +22,8 @@ public class MainController {
     public Button botonEnviar;
     @FXML
     public Button botonFoto;
+    @FXML
+    public Button botonHistorial;
 
     /**
      * Función que envía la expresión al servidor por medio del cliente
@@ -33,5 +37,10 @@ public class MainController {
 
     public void escribirResultado(String resultado){
         resultadoArea.appendText(resultado + "\n");
+    }
+
+    public void abrirHistorial() throws IOException {
+        MainCliente.abrirVentanaHistorial();
+        MainCliente.historialController.leerCSV();
     }
 }

@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Clase que inicia la interfaz y crea el cliente, también abre la ventana principal de la aplicación
@@ -19,10 +18,11 @@ public class MainCliente extends Application {
     public static Cliente cliente;
     ClienteController clienteController = new ClienteController();
     static MainController mainController = new MainController();
+    static HistorialController historialController = new HistorialController();
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainServidor.class.getResource("VentanaCliente.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainCliente.class.getResource("VentanaCliente.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         clienteController= fxmlLoader.getController();
 
@@ -33,19 +33,27 @@ public class MainCliente extends Application {
     }
 
     public static void abrirMainVentana() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainServidor.class.getResource("MainVentana.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainCliente.class.getResource("MainVentana.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         mainController = fxmlLoader.getController();
 
-        stage.setTitle("MainArbol Ventana");
+        stage.setTitle("Math");
         stage.setScene(scene);
         stage.resizableProperty().setValue(false);
         stage.show();
     }
 
     public static void abrirVentanaHistorial() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainCliente.class.getResource("VentanaHistorial.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        historialController = fxmlLoader.getController();
 
+        stage.setTitle("Historial");
+        stage.setScene(scene);
+        stage.resizableProperty().setValue(false);
+        stage.show();
     }
 
     public static void main(String[] args) {

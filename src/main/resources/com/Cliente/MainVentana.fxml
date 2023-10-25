@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Cliente.MainController">
+   <Label layoutX="17.0" layoutY="9.0" text="Evaluador de expresiones matemáticas">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+   <ImageView fx:id="imagenView" fitHeight="250.0" fitWidth="200.0" layoutX="385.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
+   <TextField fx:id="expresionField" layoutX="14.0" layoutY="361.0" prefHeight="25.0" prefWidth="355.0" promptText="Escriba aqui la expresion">
+      <font>
+         <Font size="14.0" />
+      </font></TextField>
+   <TextArea fx:id="resultadoArea" layoutX="17.0" layoutY="38.0" prefHeight="312.0" prefWidth="355.0" promptText="Aqui se vera el resultado de la expresion">
+      <font>
+         <Font size="14.0" />
+      </font></TextArea>
+   <Button fx:id="botonEnviar" layoutX="378.0" layoutY="361.0" mnemonicParsing="false" onAction="#enviarExpresion" prefHeight="25.0" prefWidth="102.0" text="Enviar">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+   <Button fx:id="botonFoto" layoutX="488.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Tomar Foto">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+   <Button fx:id="botonHistorial" layoutX="517.0" layoutY="19.0" mnemonicParsing="false" onAction="#abrirHistorial" text="Historial">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Button>
+</AnchorPane>
