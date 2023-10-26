@@ -2,6 +2,8 @@ module com.example.proyecto2_math {
     requires javafx.controls;
     requires javafx.fxml;
     requires com.opencsv;
+    requires opencv;
+    requires tess4j;
 
 
     opens com.Servidor to javafx.fxml;

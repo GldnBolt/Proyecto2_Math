@@ -2,10 +2,9 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="407.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Cliente.HistorialController">
-    <TableView fx:id="tabla" layoutX="13.0" layoutY="14.0" prefHeight="350.0" prefWidth="574.0">
+<AnchorPane prefHeight="387.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Cliente.HistorialController">
+    <TableView fx:id="tabla" layoutX="18.0" layoutY="19.0" prefHeight="350.0" prefWidth="574.0">
       <columns>
           <TableColumn fx:id="columnaUsuario" prefWidth="93.0" text="Usuario" />
           <TableColumn fx:id="columnaExpresion" prefWidth="241.0" text="Expresion" />
@@ -13,9 +12,4 @@
          <TableColumn fx:id="columnaFecha" prefWidth="118.0" text="Fecha" />
       </columns>
     </TableView>
-   <Button layoutX="530.0" layoutY="368.0" mnemonicParsing="false" text="Cerrar">
-      <font>
-         <Font size="14.0" />
-      </font>
-   </Button>
 </AnchorPane>
