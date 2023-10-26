@@ -2,11 +2,20 @@ package com.EstructurasDatos;
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ * Clase MainArbol: Clase principal que contiene el método main para ejecutar el programa.
+ * @version 7.3, 26/10/2023
+ */
 public class MainArbol {
     public static boolean esOperador(String valor) {
         return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/") || valor.equals("%") || valor.equals("**") || valor.equals("!") || valor.equals("(+)");
     }
 
+    /**
+     * Método para construir el árbol de expresión.
+     * @param expresion Expresión en notación postfija.
+     * @return Nodo raíz del árbol de expresión.
+     */
     public static Nodo construirArbol(String[] expresion) {
         Stack<Nodo> pila = new Stack<>();
 
@@ -25,6 +34,11 @@ public class MainArbol {
         return pila.pop();
     }
 
+    /**
+     * Método para evaluar el árbol de expresión.
+     * @param raiz Nodo raíz del árbol de expresión.
+     * @return Resultado de la evaluación del árbol de expresión.
+     */
     public static int evaluarArbol(Nodo raiz) {
         if (raiz == null) {
             return 0;
@@ -52,12 +66,21 @@ public class MainArbol {
         };
     }
 
+    /**
+     * Método para convertir las expresiones lógicas a su forma algebraica.
+     * @param expresion Expresión lógica.
+     * @return Expresión algebraica.
+     */
     public static String convertirExpresionesLogicas(String expresion) {
         // Reemplazar las expresiones lógicas por sus variantes algebraicas
         return expresion.replaceAll("&&", "*") // and
                 .replaceAll("\\|", "+"); // or
     }
 
+    /**
+     * Método main para ejecutar el programa.
+     * @param args Argumentos de la línea de comandos.
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese la expresión en notación postfija:");
