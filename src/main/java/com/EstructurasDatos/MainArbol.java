@@ -62,7 +62,8 @@ public class MainArbol {
         Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese la expresión en notación postfija:");
         String expresion = sc.nextLine();
-        String[] tokens = expresion.split(" ");
+        String expresionAlgebraica = convertirExpresionesLogicas(expresion); // Convertir la expresión lógica a su forma algebraica
+        String[] tokens = expresionAlgebraica.split(" "); // Usar la expresión algebraica para construir el árbol de expresión
 
         Nodo raiz = construirArbol(tokens);
         int resultado = evaluarArbol(raiz);
