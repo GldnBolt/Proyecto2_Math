@@ -12,10 +12,9 @@ public class ExpresionesLogicas {
     }
     public static String convertirExpresionesLogicas(String expresion) {
         // Reemplazar las expresiones lógicas por sus variantes algebraicas
-        return expresion.replaceAll("&&", "*")
-                .replaceAll("\\|\\|", "+")
-                .replaceAll("!", "~")
-                .replaceAll("\\^", "xor");
+        return expresion.replaceAll("&&", "*")//and
+                .replaceAll("\\|", "+")//or
+                .replaceAll("~", "!");//not
     }
 }
 

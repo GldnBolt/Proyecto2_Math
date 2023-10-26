@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class MainArbol {
     public static boolean esOperador(String valor) {
-        return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/") || valor.equals("%") || valor.equals("**");
+        return valor.equals("+") || valor.equals("-") || valor.equals("*") || valor.equals("/") || valor.equals("%") || valor.equals("**") || valor.equals("!") || valor.equals("(+)");
     }
 
     public static Nodo construirArbol(String[] expresion) {
@@ -39,14 +39,23 @@ public class MainArbol {
         int derecho = evaluarArbol(raiz.derecho);
 
         return switch (raiz.valor) {
-            case "+" -> izquierdo + derecho;
-            case "-" -> izquierdo - derecho;
-            case "*" -> izquierdo * derecho;
-            case "/" -> izquierdo / derecho;
-            case "%" -> izquierdo % derecho;
-            case "**" -> (int) Math.pow(izquierdo, derecho);
+            case "+" -> izquierdo + derecho; // Operador Suma
+            case "-" -> izquierdo - derecho; // Operador Resta
+            case "*" -> izquierdo * derecho; // Operador Multiplicación
+            case "/" -> izquierdo / derecho; // Operador División
+            case "%" -> izquierdo % derecho; // Operador Modulo
+            case "!" -> izquierdo == 0 ? 1 : 0; // Operador Not
+            case "^" -> izquierdo ^ derecho; // Operador Xor
+            case "**" -> (int) Math.pow(izquierdo, derecho); // Operador Potencia
             default -> 0;
+
         };
+    }
+
+    public static String convertirExpresionesLogicas(String expresion) {
+        // Reemplazar las expresiones lógicas por sus variantes algebraicas
+        return expresion.replaceAll("&&", "*") // and
+                .replaceAll("\\|", "+"); // or
     }
 
     public static void main(String[] args) {
