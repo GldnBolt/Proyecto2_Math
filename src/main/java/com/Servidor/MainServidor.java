@@ -7,15 +7,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * Clase principal que contiene el método main para ejecutar el programa.
@@ -208,7 +208,6 @@ class ManejoClientes extends Thread {
         try {
             salida = new PrintWriter(socket.getOutputStream(), true);
             entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            System.out.println("Manejo de clientes exitoso");
 
             nombreCliente = entrada.readLine();
             System.out.println("Nombre del cliente conectado: " + nombreCliente);
@@ -259,10 +258,9 @@ class ManejoClientes extends Thread {
      */
     public void procesarMensaje(String message) throws IOException {
         MainArbol mainArbol = new MainArbol();
-        LocalDateTime ahora = LocalDate.now().atStartOfDay();
+        LocalDateTime ahora = LocalDateTime.now().withHour(0);
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        ahora.format(formato);
-        System.out.println(ahora);
+        System.out.println(ahora.format(formato));
 
         // Se extrae el nombre del destinatario antes del >> y el contenido del mensaje después del >>
         if (message.contains(">>")) {
@@ -276,7 +274,7 @@ class ManejoClientes extends Thread {
             Nodo raiz = MainArbol.construirArbol(tokens);
             int resultado = MainArbol.evaluarArbol(raiz);
 
-            Servidor.escribirCSV(contenido, destinatario, String.valueOf(ahora), String.valueOf(resultado));
+            Servidor.escribirCSV(contenido, destinatario, String.valueOf(ahora.format(formato)), String.valueOf(resultado));
             Servidor.enviarUno(destinatario, contenido + " = " + resultado);
         }
     }
