@@ -1,12 +1,21 @@
 package com.Cliente;
 
+/**
+ * Clase que guarda los datos de una expresión en el historial
+ */
 public class Historial {
     private String usuario;
     private String expresion;
     private String resultado;
     private String fecha;
 
-    // Constructor
+    /**
+     * Constructor de la clase
+     * @param usuario Nombre del usuario que realizó la operación
+     * @param expresion Expresión que se evaluó
+     * @param resultado Resultado de la expresión
+     * @param fecha Fecha en la que se realizó la operación
+     */
     public Historial(String usuario, String expresion, String resultado, String fecha) {
         this.usuario = usuario;
         this.expresion = expresion;

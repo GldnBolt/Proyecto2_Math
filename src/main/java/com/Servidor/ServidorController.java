@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 /**
- * Clase encargada de controlar la interfaz para actualizar el servidor con la información
+ * Clase que inicia la interfaz y crea el servidor
  */
 public class ServidorController {
     @FXML
@@ -18,7 +18,7 @@ public class ServidorController {
     private TextField puertoField;
 
     /**
-     * Función que valida y utiliza la información de los text fields para actualizar el servidor
+     * Método para iniciar el servidor
      */
     public void iniciarServidor() {
         if (!puertoField.getText().isEmpty() & puertoField.getText().matches("\\d+")) {

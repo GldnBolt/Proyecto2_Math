@@ -11,6 +11,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Clase que controla la interfaz del historial
+ */
 public class HistorialController {
     @FXML
     public TableColumn<Historial, String> columnaUsuario;
@@ -22,15 +25,18 @@ public class HistorialController {
     public TableColumn<Historial, String> columnaFecha;
     @FXML
     public TableView<Historial> tabla;
+    Historial histoiral;
 
+    /**
+     * Función que lee el archivo CSV y lo muestra en la tabla
+     */
     public void leerCSV() {
         try {
             CSVReader reader = new CSVReader(new FileReader("Historial.csv"));
             ObservableList<Historial> data = FXCollections.observableArrayList();
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
-                // nextLine[] es un array de valores de una fila
-                data.add(new Historial(nextLine[0], nextLine[1], nextLine[2], nextLine[3]));
+                data.add(histoiral = new Historial(nextLine[0], nextLine[1], nextLine[2], nextLine[3]));
             }
             tabla.setItems(data);
             columnaUsuario.setCellValueFactory(new PropertyValueFactory<Historial, String>("usuario"));

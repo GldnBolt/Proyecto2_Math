@@ -1,5 +1,8 @@
 package com.EstructurasDatos;
 
+/**
+ * Clase que representa un nodo de un árbol binario.
+ */
 public class Nodo {
     String valor;
     Nodo izquierdo;

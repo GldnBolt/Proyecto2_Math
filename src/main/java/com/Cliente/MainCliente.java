@@ -12,7 +12,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- * Clase que inicia la interfaz y crea el cliente, también abre la ventana principal de la aplicación
+ * Clase principal que contiene el método main para ejecutar el programa.
+ * @version 7.3, 26/10/2023
  */
 public class MainCliente extends Application {
     public static Cliente cliente;
@@ -32,6 +33,9 @@ public class MainCliente extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Función que abre la ventana principal
+     */
     public static void abrirMainVentana() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainCliente.class.getResource("MainVentana.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -44,6 +48,9 @@ public class MainCliente extends Application {
         stage.show();
     }
 
+    /**
+     * Función que abre la ventana del historial
+     */
     public static void abrirVentanaHistorial() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainCliente.class.getResource("VentanaHistorial.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -62,7 +69,7 @@ public class MainCliente extends Application {
 }
 
 /**
- * Clase que inicia el cliente, cuenta con las funciones para enviar y recibir información del servidor
+ * Clase del cliente, inicia los sockets y cuenta con la funcion de enviar información al servidor
  */
 class Cliente {
     private String nombreCliente;
@@ -70,6 +77,12 @@ class Cliente {
     private PrintWriter out;
     private BufferedReader in;
 
+    /**
+     * Constructor de la clase Cliente
+     * @param ip IP del servidor
+     * @param puerto Puerto del servidor
+     * @param nombre Nombre del cliente
+     */
     public Cliente(String ip, int puerto, String nombre) {
         try {
             nombreCliente = nombre;
@@ -82,6 +95,10 @@ class Cliente {
         }
     }
 
+    /**
+     * Función que envía la expresión al servidor
+     * @param expression
+     */
     public void enviarExpresion(String expression) {
         out.println(this.nombreCliente + ">>" + expression);
     }

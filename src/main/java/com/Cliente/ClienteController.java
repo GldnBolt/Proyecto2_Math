@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import java.io.IOException;
 
 /**
- * Clase que controla la interfaz que actualiza la información del cliente
+ * Clase encargada de controlar la interfaz para actualizar el cliente con la información
  */
 public class ClienteController {
     @FXML
@@ -26,8 +26,7 @@ public class ClienteController {
     public TextField usuarioField;
 
     /**
-     * Función que utiliza la información de los text fields para actualizar el cliente y abrir la ventana principal, también crea un hilo para recibir constantemente los mensajes del servidor
-     * @throws IOException Excepción en caso de error al abrir la ventana principal de la aplicación
+     * Función que valida y utiliza la información de los text fields para actualizar el cliente
      */
     public void conectarCliente() throws IOException {
         if (!puertoField.getText().isEmpty() & !puertoField.getText().isEmpty() & !usuarioField.getText().isEmpty()){

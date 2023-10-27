@@ -1,5 +1,5 @@
 package com.EstructurasDatos;
-import java.util.Scanner;
+
 import java.util.Stack;
 
 /**
@@ -75,23 +75,6 @@ public class MainArbol {
         // Reemplazar las expresiones lógicas por sus variantes algebraicas
         return expresion.replaceAll("&&", "*") // and
                 .replaceAll("\\|", "+"); // or
-    }
-
-    /**
-     * Método main para ejecutar el programa.
-     * @param args Argumentos de la línea de comandos.
-     */
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese la expresión en notación postfija:");
-        String expresion = sc.nextLine();
-        String expresionAlgebraica = convertirExpresionesLogicas(expresion); // Convertir la expresión lógica a su forma algebraica
-        String[] tokens = expresionAlgebraica.split(" "); // Usar la expresión algebraica para construir el árbol de expresión
-
-        Nodo raiz = construirArbol(tokens);
-        int resultado = evaluarArbol(raiz);
-
-        System.out.println("El resultado es: " + resultado);
     }
 }
 

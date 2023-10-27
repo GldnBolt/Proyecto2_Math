@@ -16,15 +16,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.openpnp</groupId>
-            <artifactId>opencv</artifactId>
-            <version>3.2.0-0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>5.8</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.8.0-alpha2</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j -->
@@ -64,6 +58,34 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>19.0.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.3.23</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>19.0.2.1</version>
+            <classifier>win</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.simoska4.editimage</groupId>
+            <artifactId>edit-image</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.simoska4.editimage</groupId>
+            <artifactId>edit-image</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.darkxanter</groupId>
+            <artifactId>webp-imageio</artifactId>
+            <version>0.3.2</version>
         </dependency>
     </dependencies>
 

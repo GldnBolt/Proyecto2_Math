@@ -5,12 +5,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Cliente.MainController">
-   <Label layoutX="17.0" layoutY="9.0" text="Evaluador de expresiones matemáticas">
+<AnchorPane prefHeight="400.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Cliente.MainController">
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="9.0" prefHeight="20.0" prefWidth="355.0" text="Evaluador de expresiones matemáticas" textAlignment="CENTER">
       <font>
          <Font size="14.0" />
       </font></Label>
-   <ImageView fx:id="imagenView" fitHeight="250.0" fitWidth="200.0" layoutX="385.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
+   <Label layoutX="458.0" layoutY="174.0" text="Aqui se mostrará la imagen" textFill="#070707">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <ImageView fx:id="imagenView" fitHeight="312.0" fitWidth="315.0" layoutX="385.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
    <TextField fx:id="expresionField" layoutX="14.0" layoutY="361.0" prefHeight="25.0" prefWidth="355.0" promptText="Escriba aqui la expresion">
       <font>
          <Font size="14.0" />
@@ -23,11 +28,11 @@
       <font>
          <Font size="14.0" />
       </font></Button>
-   <Button fx:id="botonFoto" layoutX="488.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Tomar Foto">
+   <Button fx:id="botonFoto" layoutX="488.0" layoutY="361.0" mnemonicParsing="false" onAction="#tomarFoto" prefHeight="25.0" prefWidth="102.0" text="Tomar Foto">
       <font>
          <Font size="14.0" />
       </font></Button>
-   <Button fx:id="botonHistorial" layoutX="517.0" layoutY="19.0" mnemonicParsing="false" onAction="#abrirHistorial" text="Historial">
+   <Button fx:id="botonHistorial" layoutX="599.0" layoutY="361.0" mnemonicParsing="false" onAction="#abrirHistorial" prefHeight="30.0" prefWidth="102.0" text="Historial">
       <font>
          <Font size="14.0" />
       </font>
