@@ -22,7 +22,8 @@ public class CapturaImagen {
      * Inicia el tesseract
      */
     public static void inicarTesseract() {
-        tesseract.setLanguage("eng");
+        tesseract.setLanguage("eng+equ");
+        tesseract.setTessVariable("tessedit_char_whitelist", "0123456789+-*/=()x^!%|");
         tesseract.setDatapath("Tess4J/tessdata");
     }
 
